@@ -1,13 +1,38 @@
 #include <iostream>
 #include <cstring>
+#include <gtest/gtest.h>
 
 std::string convertTextToSound(std::string text);
 bool isEqual(std::string text1, std::string text2);
 
-int main()
+TEST(TestconvertTextToSound, subtest_1)
 {
-    setlocale(LC_ALL, "Russian");
-    // std::string text1{"Ashcroft"}, text2{"Ashcraft"};
+    ASSERT_EQ("A261", convertTextToSound("Ashcraft"));
+    ASSERT_EQ("V423", convertTextToSound("velocity"));
+    ASSERT_EQ("W532", convertTextToSound("windows"));
+    ASSERT_EQ("A251", convertTextToSound("assembling"));
+    ASSERT_EQ("B456", convertTextToSound("bbffpviolmr"));
+
+    ASSERT_EQ("A200", convertTextToSound("Ash"));
+    ASSERT_EQ("P200", convertTextToSound("physics"));
+
+
+    std::cout << "convertTextToSound works\n" << std::endl;
+}
+
+TEST(TestisEqual, subtest_1)
+{
+    ASSERT_FALSE(isEqual(convertTextToSound("whello"), convertTextToSound("hello")));
+    ASSERT_TRUE(isEqual(convertTextToSound("hello"), convertTextToSound("hhelwaelo")));
+    ASSERT_TRUE(isEqual(convertTextToSound("Ashcraft"), convertTextToSound("Ashcroft")));
+
+    std::cout << "isEqual works\n" << std::endl;
+}
+
+
+int main(int argc, char **argv)
+{
+    /* std::string text1{"Ashcroft"}, text2{"Ashcraft"};
     std::string text1, text2;
     std::cout << "Input 2 words\n";
     std::cin >> text1 >> text2;
@@ -17,9 +42,11 @@ int main()
 
     bool compared = isEqual(text1, text2);
 
-    // std::cout << text1 + "\n" << text2 << std::endl;
-    compared ? std::cout << "Strings are equal" : std::cout << "Strings are NOT equal" << std::endl;
-    return 0;
+    std::cout << text1 + "\n" << text2 << std::endl;
+    compared ? std::cout << "Strings are equal\n" : std::cout << "Strings are NOT equal" << std::endl; */
+
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
 
 
@@ -74,7 +101,10 @@ std::string convertTextToSound(std::string text)
 
     // недостающие символы заменяем 0
     if (length < 4)
-        text.append(4 - length, '0');
+    {
+        for (int j = 0; j < 4 - length; j++)
+            text[length + j] = '0';
+    }
 
     return text;
 }
