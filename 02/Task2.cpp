@@ -1,5 +1,9 @@
 #include <iostream>
-#include "libstemmer.h"
+#include "header.hpp"
+
+// 1. g++ -c stemmer.cpp  - компилируем библиотеку без компоновки (создается файл stemmer.o)
+// 2. ar rc libstemmer.a stemmer.o  - создаем статическую библиотеку из объектного файла
+// 3. g++ -o Task2 Task2.cpp -lstemmer -L./  - компилируем цель и подключаем библиотеку libstemmer.a
 
 int main()
 {

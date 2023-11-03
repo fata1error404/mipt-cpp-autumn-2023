@@ -7,14 +7,18 @@ CC_GTEST_FLAGS=-lgtest_main -lgtest -lpthread
 .PHONY: Task2.cpp  # чтобы убрать ошибку "is up to date.." (помечаем цель как фальшивую)
 
 Task2.cpp:
-	g++	-o Task2 Task2.cpp
+	g++ -o Task2 Task2.cpp -lstemmer -L./
+
+lib:
+	g++ -c stemmer.cpp
+	ar rc libstemmer.a stemmer.o
 
 run:
-	Task2.exe
+	Task2
 
 test:
-	Task2.exe
+	$(CC) -o test_bin test.cpp -lstemmer -L./ $(CC_GTEST_FLAGS)
+
 
 clean:
-	del -f *.exe
-# почему rm не работает?
+	rm -f Task2 test_bin *.o *.a
