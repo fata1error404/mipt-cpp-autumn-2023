@@ -13,7 +13,7 @@ run:
 	Task1
 
 test:
-	g++	-o test_bin test.cpp $(CC_GTEST_FLAGS)
+	g++	-o test_bin Task1.cpp $(CC_GTEST_FLAGS)
 
 clean:
 	rm -f Task1 test_bin
