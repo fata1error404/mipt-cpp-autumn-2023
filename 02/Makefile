@@ -19,6 +19,5 @@ run:
 test:
 	$(CC) -o test_bin test.cpp -lstemmer -L./ $(CC_GTEST_FLAGS)
 
-
 clean:
 	rm -f Task2 test_bin *.o *.a

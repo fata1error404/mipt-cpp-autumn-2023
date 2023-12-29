@@ -19,6 +19,5 @@ run:
 test:
 	$(CC) -o test_bin test.cpp -lallocator -L./ $(CC_GTEST_FLAGS)
 
-
 clean:
 	rm -f Task3 test_bin *.o *.a

@@ -19,6 +19,5 @@ run:
 #test:
 #	$(CC) -o test_bin test.cpp -lparser -L./ $(CC_GTEST_FLAGS)
 
-
 clean:
 	rm -f Task4 test_bin *.o *.a
